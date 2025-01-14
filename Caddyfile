@@ -20,7 +20,7 @@
       basic_auth user_name your_password  # 设置用户名和密码，替换为你实际的值
       hide_ip
       hide_via
-      probe_resistance www.nature.com # 使用一个秘密域名，修改为你自己的值
+      probe_resistance www.nature.com # 使用一个伪装域名，修改为你自己的值
     }
     file_server {
       root /var/www/html
