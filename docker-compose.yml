@@ -1,6 +1,6 @@
 services:
   naiveproxy:
-    image: pocat/naiveproxy:latest 
+    image: zorn0zhao/naiveproxy:v3
     container_name: naiveproxy
     restart: always
     network_mode: host
