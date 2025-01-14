@@ -14,6 +14,21 @@ tree /home/naiveproxy-docker_test
 ├── xcaddy
 └── xcaddy_0.4.4_linux_amd64.tar.gz
 
+# 1、文件结构：
+```
+root@hcss-ecs-3a1a:/home# tree /home/naiveproxy-docker_test
+/home/naiveproxy-docker_test
+├── caddy
+├── caddy_2.9.0_linux_amd64.tar.gz
+├── Caddyfile
+├── config.json
+├── docker-compose.yml
+├── Dockerfile
+├── README.md
+├── xcaddy
+└── xcaddy_0.4.4_linux_amd64.tar.gz
+```
+
 # 2、目录中用到的文件下载地址：
 #### 2.1、caddy_2.9.0_linux_amd64.tar.gz 下载地址：
 	https://github.com/caddyserver/caddy/releases
