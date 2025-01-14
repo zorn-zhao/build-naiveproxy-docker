@@ -1,0 +1,114 @@
+{
+  "admin": {
+    "disabled": true
+  },
+  "logging": {
+    "logs": {
+      "default": {
+        "writer": {
+          "filename": "/var/log/caddy/access.log",  // 日志文件的路径，可以修改为你希望存储日志的路径
+          "output": "file"
+        },
+        "level": "INFO"  // 日志级别，可选 "DEBUG", "INFO", "WARN", "ERROR"
+      }
+    }
+  },
+  "apps": {
+    "http": {
+      "servers": {
+        "srv0": {
+          "listen": [
+            ":443"  // HTTPS监听端口，通常为443，不建议修改
+          ],
+          "routes": [
+            {
+              "handle": [
+                {
+                  "handler": "subroute",
+                  "routes": [
+                    {
+                      "handle": [
+                        {
+                          "auth_pass_deprecated": "your_password",  // 修改为你的代理密码
+                          "auth_user_deprecated": "user_name",  // 修改为你的代理用户名
+                          "handler": "forward_proxy",
+                          "hide_ip": true,  // 是否隐藏真实IP，建议保持true
+                          "hide_via": true,  // 是否隐藏请求来源，建议保持true
+                          "probe_resistance": {
+                            "domain": "rP7uSWkJpZzfg5g2Qr.com"  // 修改为一个不常用的域名，用作探测抵抗
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "handle": [
+                        {
+                          "handler": "file_server",
+                          "hide": [
+                            "./Caddyfile"  // 隐藏的文件路径，可根据需要修改
+                          ],
+                          "root": "/var/www/html"  // 静态文件的根目录路径，可根据需要修改
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "protocols": [
+            "h1",  // 启用HTTP/1协议
+            "h2",  // 启用HTTP/2协议
+            "h3"   // 启用HTTP/3协议
+          ]
+        },
+        "srv1": {
+          "listen": [
+            ":80"  // HTTP监听端口，通常为80，不建议修改
+          ],
+          "routes": [
+            {
+              "handle": [
+                {
+                  "handler": "static_response",
+                  "headers": {
+                    "Location": [
+                      "https://{http.request.host}{http.request.uri}"  // HTTP请求重定向到HTTPS
+                    ]
+                  },
+                  "status_code": 301  // 重定向状态码，通常为301（永久重定向）
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "tls": {
+      "certificates": {
+        "automate": [
+          "your_domain.com"  // 修改为你的域名，例如 "example.com"
+        ]
+      },
+      "automation": {
+        "policies": [
+          {
+            "subjects": [
+              "your_domain.com"  // 修改为你的域名，例如 "example.com"
+            ],
+            "issuers": [
+              {
+                "email": "your@email.com",  // 修改为你的邮箱地址，用于获取SSL证书
+                "module": "acme"  // 使用ACME协议获取证书
+              },
+              {
+                "email": "your@email.com",  // 修改为你的邮箱地址，用于备用证书获取
+                "module": "zerossl"  // 使用ZeroSSL作为备用证书颁发机构
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
