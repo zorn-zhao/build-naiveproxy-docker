@@ -7,9 +7,11 @@ tree /home/naiveproxy-docker_test
 ├── caddy
 ├── caddy_2.9.0_linux_amd64.tar.gz
 ├── Caddyfile
+├── caddy.sh
 ├── config.json
 ├── docker-compose.yml
 ├── Dockerfile
+├── Dockerfile.bak
 ├── README.md
 ├── xcaddy
 └── xcaddy_0.4.4_linux_amd64.tar.gz
