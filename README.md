@@ -28,4 +28,4 @@ root@hcss-ecs-3a1a:/home# tree /home/naiveproxy-docker_test
 #### 2.3、dockerhub参考地址：
 	https://hub.docker.com/r/pocat/naiveproxy
 
-#### 2.4、从我的GitHub上拉取代码构建镜像地址：
+
