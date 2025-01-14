@@ -40,3 +40,20 @@ root@hcss-ecs-3a1a:/home# tree /home/naiveproxy-docker_test
 #### 3.3、推送镜像到 docker hub仓库：
 	docker push zorn0zhao/naiveproxy:v3
 	docker push dockerhub仓库地址[zorn0zhao/naiveproxy]:dockerhub仓库版本[v3]
+
+# 4、验证服务是否启动：
+```
+cd /etc/naiveproxy/
+docker-compose ps -a 
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+naiveproxy          "/bin/sh -c '/usr/bi…"   naiveproxy          running    
+
+netstat -tunlp 
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      279/systemd-resolve 
+tcp6       0      0 :::80                   :::*                    LISTEN      211269/caddy        
+tcp6       0      0 :::443                  :::*                    LISTEN      211269/caddy        
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           279/systemd-resolve 
+udp6       0      0 :::443                  :::*                                211269/caddy
+```
