@@ -28,4 +28,15 @@ root@hcss-ecs-3a1a:/home# tree /home/naiveproxy-docker_test
 #### 2.3、dockerhub参考地址：
 	https://hub.docker.com/r/pocat/naiveproxy
 
+# 3、封装镜像、达标签、推送到docker hub仓库：
+#### 3.1、使用Dockerfile文件封装镜像：
+	docker build -f Dockerfile -t naiveproxy:v3 .
+	docker build -f Dockerfile所在目录 -t 镜像名[naiveproxy]:镜像版本[v3] .   # . 是当前目录的意思
 
+#### 3.2、打标签：
+	docker tag naiveproxy:v3 zorn0zhao/naiveproxy:v3
+	dokcer tag 刚才构建的镜像名[naiveproxy]:刚才构建的镜像版本[v3] dockerhub仓库地址[zorn0zhao/naiveproxy]:dockerhub仓库版本[v3]
+
+#### 3.3、推送镜像到 docker hub仓库：
+	docker push zorn0zhao/naiveproxy:v3
+	docker push dockerhub仓库地址[zorn0zhao/naiveproxy]:dockerhub仓库版本[v3]
